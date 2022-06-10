@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
 const blogsRoutes = require('./src/routes/blog_routes');
 app.use('/api/v1/blogs', blogsRoutes);
 
+app.use((req, res, next) => {
+    res.status(404).send('404 Not Found');
+});
+
+
 app.listen(port, () => {
     console.log(`Express is running at port ${port}`);
 });
