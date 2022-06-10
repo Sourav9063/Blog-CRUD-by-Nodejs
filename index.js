@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
 const blogsRoutes = require('./src/routes/blog_routes');
 app.use('/api/v1/blogs', blogsRoutes);
 
+const usersRoutes = require('./src/routes/user_routes');
+app.use('/api/v1/users', usersRoutes);
+
+
 app.use((req, res, next) => {
     res.status(404).send('404 Not Found');
 });
