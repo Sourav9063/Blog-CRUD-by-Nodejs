@@ -11,6 +11,7 @@ var User = function (user) {
 
 
 
+
 User.getAllUsers = (result) => {
     db.query('SELECT * FROM users ', (err, res) => {
         if (err) {

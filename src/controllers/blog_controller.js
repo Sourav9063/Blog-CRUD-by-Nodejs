@@ -47,16 +47,32 @@ exports.getBlogById = (req, res) => {
 }
 
 exports.createNewBlog = (req, res) => {
-    // const blog = new Blog(req.body);
-    console.log(req.body);
 
-    Blog.createNewBlog(req.body, (err, blog) => {
-        console.log(blog);
+    let newBlog = new Blog(req.body);
+    newBlog.user_id = req.user.id;
+    console.log(newBlog);
+
+    Blog.createNewBlog(newBlog, (err, results) => {
+        // console.log(blog);
         if (err) {
             res.send(err);
         }
         else {
-            res.json(blog);
+            res.json(results);
+        }
+    }
+    )
+}
+
+exports.updateBlogByID = (req, res) => {
+    req.body.user_id = req.user.id;
+    Blog.updateBlogID(req.params.id, req.body, (err, result) => {
+        console.log(result);
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.json(result);
         }
     }
     )

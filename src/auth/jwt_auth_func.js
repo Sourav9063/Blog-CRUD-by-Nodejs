@@ -7,10 +7,11 @@ exports.auth_token_create = (user) => {
 
 exports.check_token = (req, res, next) => {
     const authHeader = req.headers['authorization'];
+
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.sendStatus(401);
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.status(403).json({ 'error': 'token is not valid' });
         console.log(user);
         req.user = user;
         next();

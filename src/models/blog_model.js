@@ -2,13 +2,12 @@
 const db = require('../database/db_config');
 
 
-var Blog = (blog) => {
+var Blog = function (blog) {
     this.title = blog.title;
-    this.id = blog.id;
+    this.blogid = blog.blogid;
     this.main = blog.main;
     this.user_id = blog.user_id;
     this.create_date = blog.create_date;
-
 
 }
 
@@ -51,7 +50,22 @@ Blog.getBlogById = (id, result) => {
 }
 
 Blog.createNewBlog = (blog, result) => {
+
+    console.log(blog);
     db.query('INSERT INTO blogs SET ?', blog, (err, res) => {
+        if (err) {
+            console.log("error on query")
+            result(err, null)
+        }
+        else {
+            result(null, res)
+        }
+    }
+    )
+}
+
+Blog.updateBlogID = (id, blog, result) => {
+    db.query('UPDATE blogs INNER JOIN users ON users.id=blogs.user_id SET ? WHERE blogs.blogid=?', [blog, id], (err, res) => {
         if (err) {
             console.log("error on query")
             result(err, null)
