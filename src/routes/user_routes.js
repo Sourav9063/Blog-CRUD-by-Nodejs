@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt_auth_func = require('../auth/jwt_auth_func');
 
 const userController = require('../controllers/user_controller');
 

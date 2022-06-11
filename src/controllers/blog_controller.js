@@ -7,8 +7,6 @@ exports.getBlogList = (req, res) => {
     Blog.getAllBlogs((err, blogs) => {
         console.log(blogs);
         if (err) {
-            //send status code 500 if error
-
 
             res.status(500).send(err);
 

@@ -1,12 +1,14 @@
 const express = require('express');
+const jwt_auth_func = require('../auth/jwt_auth_func');
 const router = express.Router();
+
 
 const blogController = require('../controllers/blog_controller');
 
-router.get('/', blogController.getBlogList);
-router.get('/latest10', blogController.getBlogLatest10);
-router.get('/:id', blogController.getBlogById);
-router.post('/', blogController.createNewBlog);
+router.get('/', jwt_auth_func.check_token, blogController.getBlogList);
+router.get('/latest10', jwt_auth_func.check_token, blogController.getBlogLatest10);
+router.get('/:id', jwt_auth_func.check_token, blogController.getBlogById);
+router.post('/', jwt_auth_func.check_token, blogController.createNewBlog);
 
 
 module.exports = router;

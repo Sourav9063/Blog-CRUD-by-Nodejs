@@ -2,6 +2,8 @@ const User = require('../models/user_model');
 const utils = require('../utils/util_func');
 const bcrypt = require('bcrypt');
 
+const jwtfunc = require('../auth/jwt_auth_func');
+
 exports.getUserList = (req, res) => {
     User.getAllUsers((err, users) => {
         console.log(users);
@@ -94,7 +96,7 @@ exports.createNewUser = async (req, res) => {
 
 
 exports.signIn = async (req, res) => {
-    console.log(req.body);
+    console.log(process.env.JWT_KEY);
     let user = new User(req.body);
     try {
         User.getUserByEmail(user.email, async (err, response) => {
@@ -107,11 +109,19 @@ exports.signIn = async (req, res) => {
                     console.log('user exists');
                     if (await bcrypt.compare(user.password_hash, response[0].password_hash)) {
                         console.log('password is correct');
-                        res.json(response);
+
+
+
+                        const token = jwtfunc.auth_token_create(response[0]);
+
+
+
+                        // res.status(200).json(response[0].access_token = token);
+                        res.status(200).json({ 'access_token': token, 'user_id': response[0].id });
                     }
                     else {
                         console.log('password is incorrect');
-                        res.status(400).send('password is incorrect');
+                        res.status(401).send('password is incorrect');
                     }
                 }
                 else {
