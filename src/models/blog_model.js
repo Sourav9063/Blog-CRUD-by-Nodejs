@@ -16,7 +16,7 @@ Blog.getAllBlogs = (result) => {
     db.query('SELECT * FROM blogs ', (err, res) => {
         if (err) {
             console.log("error on query")
-            result(null, err)
+            result(err, null)
         }
         else {
             result(null, res)
@@ -29,7 +29,7 @@ Blog.getLatest10Blogs = (result) => {
     db.query('SELECT * FROM blogs ORDER BY create_date DESC LIMIT 10', (err, res) => {
         if (err) {
             console.log("error on query")
-            result(null, err)
+            result(err, null)
         }
         else {
             result(null, res)
@@ -41,7 +41,7 @@ Blog.getBlogById = (id, result) => {
     db.query(`SELECT * FROM blogs WHERE id = ${id}`, (err, res) => {
         if (err) {
             console.log("error on query")
-            result(null, err)
+            result(err, null)
         }
         else {
             result(null, res)
@@ -54,7 +54,7 @@ Blog.createNewBlog = (blog, result) => {
     db.query('INSERT INTO blogs SET ?', blog, (err, res) => {
         if (err) {
             console.log("error on query")
-            result(null, err)
+            result(err, null)
         }
         else {
             result(null, res)
