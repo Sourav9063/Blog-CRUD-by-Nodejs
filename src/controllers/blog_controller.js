@@ -46,6 +46,34 @@ exports.getBlogById = (req, res) => {
     )
 }
 
+exports.getBlogsByWriterEmail = (req, res) => {
+    console.log(req.originalUrl);
+    let email = req.body.email;
+    if (req.originalUrl.includes("myblogs")) {
+        email = req.user.email;
+    }
+    Blog.getBlogsByWriterEmail(email, (err, blogs) => {
+        console.log(blogs);
+        if (err) {
+            res.send(err);
+        }
+        else {
+            if (blogs.length > 0) {
+                res.json(blogs);
+            }
+            else {
+                res.status(404).json({
+                    message: "Blog not found"
+                });
+            }
+        }
+    }
+    )
+}
+
+
+
+
 exports.createNewBlog = (req, res) => {
 
     let newBlog = new Blog(req.body);
@@ -65,8 +93,8 @@ exports.createNewBlog = (req, res) => {
 }
 
 exports.updateBlogByID = (req, res) => {
-    req.body.user_id = req.user.id;
-    Blog.updateBlogID(req.params.id, req.body, (err, result) => {
+    // req.body.user_id = req.user.id;
+    Blog.updateBlogID(req.params.id, req.user.id, req.body, (err, result) => {
         console.log(result);
         if (err) {
             res.send(err);

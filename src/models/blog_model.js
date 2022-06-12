@@ -37,7 +37,7 @@ Blog.getLatest10Blogs = (result) => {
     )
 }
 Blog.getBlogById = (id, result) => {
-    db.query(`SELECT * FROM blogs WHERE id = ${id}`, (err, res) => {
+    db.query(`SELECT * FROM blogs WHERE blogid = '${id}'`, (err, res) => {
         if (err) {
             console.log("error on query")
             result(err, null)
@@ -48,6 +48,22 @@ Blog.getBlogById = (id, result) => {
     }
     )
 }
+
+Blog.getBlogsByWriterEmail = (email, result) => {
+    db.query(`SELECT  blogs.title, blogs.main, blogs.blogid,blogs.create_date,blogs.user_id FROM blogs JOIN users ON  blogs.user_id= users.id WHERE users.email='${email}'`, (err, res) => {
+        if (err) {
+            console.log("error on query Email")
+            result(err, null)
+        }
+        else {
+            result(null, res)
+        }
+    }
+    )
+}
+
+
+
 
 Blog.createNewBlog = (blog, result) => {
 
@@ -64,10 +80,11 @@ Blog.createNewBlog = (blog, result) => {
     )
 }
 
-Blog.updateBlogID = (id, blog, result) => {
-    db.query('UPDATE blogs INNER JOIN users ON users.id=blogs.user_id SET ? WHERE blogs.blogid=?', [blog, id], (err, res) => {
+Blog.updateBlogID = (blogid, userid, blog, result) => {
+
+    db.query(`UPDATE blogs  SET ? WHERE blogs.blogid='${blogid}' AND user_id='${userid}'`, blog, (err, res) => {
         if (err) {
-            console.log("error on query")
+            console.log("error on query update")
             result(err, null)
         }
         else {

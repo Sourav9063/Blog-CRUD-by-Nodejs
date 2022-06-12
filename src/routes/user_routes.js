@@ -10,7 +10,7 @@ router.get('/', userController.getUserList);
 // router.get('/:email', userController.getUserByEmail);
 router.get('/info', jwt_auth_func.check_token, userController.getUserByEmail)
 router.post('/signup', userController.createNewUser);
-router.get('/signin', userController.signIn);
+router.post('/signin', userController.signIn);
 router.patch('/update', jwt_auth_func.check_token, userController.updateUser);
 
 module.exports = router;

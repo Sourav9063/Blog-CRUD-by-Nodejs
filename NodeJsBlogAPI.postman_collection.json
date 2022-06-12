@@ -65,9 +65,15 @@
 			"name": "get blog by id (need token)",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:5000/api/v1/blogs/1",
+					"raw": "http://localhost:5000/api/v1/blogs/17",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -77,7 +83,76 @@
 						"api",
 						"v1",
 						"blogs",
-						"1"
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by writer Email(needs token)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "abc@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/blogs/writer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"blogs",
+						"writer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "myBlogs (needs token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/blogs/myblogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"blogs",
+						"myblogs"
 					]
 				}
 			},
@@ -90,7 +165,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvdXJhdiIsImlhdCI6MTY1NTAyOTQzNSwiZXhwIjoxNjU3NjIxNDM1fQ.Lfvk9Rj9D-NZKPEW6odbs75Y-FPqi8Mb2WUX_qRPuzc",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
 						"type": "text"
 					}
 				],
@@ -99,12 +174,12 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "Blog Title by sourav",
+							"value": "Blog Title by mahin2",
 							"type": "text"
 						},
 						{
 							"key": "main",
-							"value": "Blog Main by sourav",
+							"value": "Blog Main by mahin2",
 							"type": "text"
 						}
 					]
@@ -133,7 +208,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpZCI6OSwibmFtZSI6InNvdXJhdiIsImlhdCI6MTY1NDk4NDMzOCwiZXhwIjoxNjU3NTc2MzM4fQ.aQSEZ5dz27nlG227F6nI69PTG8g8vIBIbLO18FdkOHg",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
 						"type": "text"
 					}
 				],
@@ -142,18 +217,18 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "sslsl",
+							"value": "mahin new",
 							"type": "text"
 						},
 						{
 							"key": "main",
-							"value": "main",
+							"value": "mahin new",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/v1/blogs/10",
+					"raw": "http://localhost:5000/api/v1/blogs/18",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -163,7 +238,36 @@
 						"api",
 						"v1",
 						"blogs",
-						"10"
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog delete (needs Token)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/blogs/delete/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"blogs",
+						"delete",
+						"17"
 					]
 				}
 			},
@@ -176,7 +280,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvbG9tb24qKioqIiwiaWF0IjoxNjU1MDMwNjE4LCJleHAiOjE2NTc2MjI2MTh9.4ZmZ2K0EDL9hJImOdrK6Jn8fzWFZJUkUlN6VuL_NJgM",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
 						"type": "text"
 					}
 				],
@@ -199,23 +303,20 @@
 		},
 		{
 			"name": "signin",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "abc@gmail.com",
+							"value": "mahin@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password_hash",
-							"value": "password",
+							"value": "123456",
 							"type": "text"
 						}
 					]
@@ -247,17 +348,17 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "sourav",
+							"value": "Mahin",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "abc@gmail.com",
+							"value": "mahin@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password_hash",
-							"value": "password",
+							"value": "123456",
 							"type": "text"
 						}
 					]
@@ -286,7 +387,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvdXJhdiIsImlhdCI6MTY1NTAyOTQzNSwiZXhwIjoxNjU3NjIxNDM1fQ.Lfvk9Rj9D-NZKPEW6odbs75Y-FPqi8Mb2WUX_qRPuzc",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haGluQGdtYWlsLmNvbSIsImlkIjoxNCwibmFtZSI6Ik1haGluIiwiaWF0IjoxNjU1MDM1NTEyLCJleHAiOjE2NTc2Mjc1MTJ9.TgiR2jinNj2J9l6iUQbymlG9L348g43bC4Ot6pCF4Dw",
 						"type": "text"
 					}
 				],
@@ -295,7 +396,7 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "Solomon****",
+							"value": "Mahin2",
 							"type": "text"
 						}
 					]
