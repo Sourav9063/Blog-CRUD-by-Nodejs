@@ -11,7 +11,7 @@ exports.check_token = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.sendStatus(401);
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.status(403).json({ 'error': 'token is not valid' });
+        if (err) return res.status(401).json({ 'error': 'token is not valid' });
         console.log(user);
         req.user = user;
         next();

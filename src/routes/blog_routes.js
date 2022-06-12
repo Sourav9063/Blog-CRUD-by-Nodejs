@@ -10,6 +10,6 @@ router.get('/latest10', jwt_auth_func.check_token, blogController.getBlogLatest1
 router.get('/:id', jwt_auth_func.check_token, blogController.getBlogById);
 router.post('/', jwt_auth_func.check_token, blogController.createNewBlog);
 router.patch('/:id', jwt_auth_func.check_token, blogController.updateBlogByID);
-
+router.delete('/delete/:id', jwt_auth_func.check_token, blogController.deleteBlogByID);
 
 module.exports = router;

@@ -78,6 +78,29 @@ exports.updateBlogByID = (req, res) => {
     )
 }
 
+exports.deleteBlogByID = (req, res) => {
+    Blog.deleteBlogById(req.user.id, req.params.id, (err, result) => {
+        console.log(result);
+        if (err) {
+            res.send(err);
+        }
+        else {
+            // res.json(result);
+            if (result.affectedRows > 0) {
+                res.json({
+                    message: "Blog deleted successfully"
+                });
+            }
+            else {
+                res.status(404).json({
+                    message: "Blog not found"
+                });
+            }
+        }
+    }
+    )
+}
+
 
 
 
