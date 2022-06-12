@@ -10,7 +10,13 @@
 			"name": "http://localhost:5000/api/v1/blogs",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpZCI6OSwibmFtZSI6InNvdXJhdiIsImlhdCI6MTY1NDk4MzQ3NywiZXhwIjoxNjU3NTc1NDc3fQ.HSE0UHcMrfnztt6ViiuTwzvvg_3QAHzm42Z1a5CrduU",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:5000/api/v1/blogs",
 					"protocol": "http",
@@ -31,7 +37,13 @@
 			"name": "http://localhost:5000/api/v1/blogs/latest10",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpZCI6OSwibmFtZSI6InNvdXJhdiIsImlhdCI6MTY1NDk4MzQ3NywiZXhwIjoxNjU3NTc1NDc3fQ.HSE0UHcMrfnztt6ViiuTwzvvg_3QAHzm42Z1a5CrduU",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:5000/api/v1/blogs/latest10",
 					"protocol": "http",
@@ -75,7 +87,13 @@
 			"name": "http://localhost:5000/api/v1/blogs/",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzcy5ueEBhYmMuY29tIiwiaWQiOjUsIm5hbWUiOiJzb3VyYXYiLCJpYXQiOjE2NTQ5Nzk1ODIsImV4cCI6MTY1NzU3MTU4Mn0.SKolixF8i18gZapGO5yfyZHRmA1M1nPOuzt_B8LTT0E",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -85,13 +103,8 @@
 							"type": "text"
 						},
 						{
-							"key": "user_id",
-							"value": "2",
-							"type": "text"
-						},
-						{
 							"key": "main",
-							"value": "Blog Main",
+							"value": "Blog Main2",
 							"type": "text"
 						}
 					]
@@ -108,6 +121,109 @@
 						"v1",
 						"blogs",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/v1/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/v1/users/signin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password_hash",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/v1/users/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "sourav",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password_hash",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
 					]
 				}
 			},
