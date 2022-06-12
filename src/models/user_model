@@ -50,6 +50,18 @@ User.getUserByEmail = (email, result) => {
     }
     )
 }
+User.updateInfo = (userID, newData, result) => {
+    db.query('UPDATE users SET ? WHERE id = ?', [newData, userID], (err, res) => {
+        if (err) {
+            console.log("error on query")
+            result(err, null)
+        }
+        else {
+            result(null, res)
+        }
+    }
+    )
+}
 
 
 

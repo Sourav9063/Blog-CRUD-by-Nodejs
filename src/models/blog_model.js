@@ -77,6 +77,20 @@ Blog.updateBlogID = (id, blog, result) => {
     )
 }
 
+Blog.deleteBlogById = (user_id, blogid, result) => {
+    db.query(`DELETE FROM blogs WHERE user_id = ${user_id} AND blogid = ${blogid}`, (err, res) => {
+        if (err) {
+            console.log("error on query")
+            result(err, null)
+        }
+        else {
+            result(null, res)
+        }
+    }
+    )
+}
+
+
 
 
 

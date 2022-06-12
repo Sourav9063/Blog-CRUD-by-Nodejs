@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:5000/api/v1/blogs",
+			"name": "all blogs (needs token)",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -34,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/blogs/latest10",
+			"name": "get latest 10 blogs(needs token",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -62,7 +62,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/blogs/1",
+			"name": "get blog by id (need token)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -84,13 +84,13 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/blogs/",
+			"name": "post a blog (needs token)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzcy5ueEBhYmMuY29tIiwiaWQiOjUsIm5hbWUiOiJzb3VyYXYiLCJpYXQiOjE2NTQ5Nzk1ODIsImV4cCI6MTY1NzU3MTU4Mn0.SKolixF8i18gZapGO5yfyZHRmA1M1nPOuzt_B8LTT0E",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvdXJhdiIsImlhdCI6MTY1NTAyOTQzNSwiZXhwIjoxNjU3NjIxNDM1fQ.Lfvk9Rj9D-NZKPEW6odbs75Y-FPqi8Mb2WUX_qRPuzc",
 						"type": "text"
 					}
 				],
@@ -99,12 +99,12 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "Blog Title",
+							"value": "Blog Title by sourav",
 							"type": "text"
 						},
 						{
 							"key": "main",
-							"value": "Blog Main2",
+							"value": "Blog Main by sourav",
 							"type": "text"
 						}
 					]
@@ -127,12 +127,33 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/users",
+			"name": "update blogs by id (needs token)",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpZCI6OSwibmFtZSI6InNvdXJhdiIsImlhdCI6MTY1NDk4NDMzOCwiZXhwIjoxNjU3NTc2MzM4fQ.aQSEZ5dz27nlG227F6nI69PTG8g8vIBIbLO18FdkOHg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "sslsl",
+							"type": "text"
+						},
+						{
+							"key": "main",
+							"value": "main",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:5000/api/v1/users",
+					"raw": "http://localhost:5000/api/v1/blogs/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -141,14 +162,43 @@
 					"path": [
 						"api",
 						"v1",
-						"users"
+						"blogs",
+						"10"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/users/signin",
+			"name": "get user info (needs token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvbG9tb24qKioqIiwiaWF0IjoxNjU1MDMwNjE4LCJleHAiOjE2NTc2MjI2MTh9.4ZmZ2K0EDL9hJImOdrK6Jn8fzWFZJUkUlN6VuL_NJgM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -188,7 +238,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/api/v1/users/signup",
+			"name": "signup",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -224,6 +274,44 @@
 						"v1",
 						"users",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user (needs token)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdi5hamhtZWQ1NjU0QGdtYWlsLmNvbWphZHNsZiIsImlkIjoxMiwibmFtZSI6IlNvdXJhdiIsImlhdCI6MTY1NTAyOTQzNSwiZXhwIjoxNjU3NjIxNDM1fQ.Lfvk9Rj9D-NZKPEW6odbs75Y-FPqi8Mb2WUX_qRPuzc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Solomon****",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"update"
 					]
 				}
 			},

@@ -3,6 +3,7 @@ const utils = require('../utils/util_func');
 const bcrypt = require('bcrypt');
 
 const jwtfunc = require('../auth/jwt_auth_func');
+const { json } = require('body-parser');
 
 exports.getUserList = (req, res) => {
     User.getAllUsers((err, users) => {
@@ -13,6 +14,20 @@ exports.getUserList = (req, res) => {
         }
         else {
             res.json(users);
+        }
+    })
+}
+
+exports.getUserByEmail = (req, res) => {
+    const email = req.user.email;
+    User.getUserByEmail(email, (err, user) => {
+        if (err) {
+            //send status code 500 if error
+            res.status(500).send(err);
+        }
+        else {
+            if (user.length > 0) { res.status(200).json(user); }
+            else { res.status(404).send('user not found'); }
         }
     })
 }
@@ -42,7 +57,17 @@ exports.createNewUser = async (req, res) => {
                                 res.status(500).send(err);
                             }
                             else {
-                                res.json(response);
+                                User.getUserByEmail(user.email, (err, response) => {
+                                    if (err) {
+                                        res.status(500).send(err);
+                                    }
+                                    else {
+                                        const token = jwtfunc.auth_token_create(response[0]);
+                                        res.status(200).send({ access_token: token, user_id: response[0].id });
+                                    }
+                                })
+
+
                             }
                         })
 
@@ -140,4 +165,20 @@ exports.signIn = async (req, res) => {
     catch (error) {
         res.status(500).send(error);
     }
+}
+
+
+exports.updateUser = (req, res) => {
+    User.updateInfo(req.user.id, req.body, (err, response) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            // res.json(response);
+            const newUser = Object.assign(req.user, req.body);
+            const token = jwtfunc.auth_token_create(newUser);
+            newUser.authorization = token;
+            res.status(200).json(newUser);
+        }
+    })
 }
