@@ -29,7 +29,7 @@ const SignIn = () => {
 
         const data = {
             email: email,
-            password: password
+            password_hash: password
         }
         try {
             const res = await Axios.post('http://localhost:5000/api/v1/users/signin', data);
@@ -48,7 +48,7 @@ const SignIn = () => {
         <BorderWrapper>
             <div>
                 <h1>SignIn</h1>
-                <form action=""  >
+                <form action="" onSubmit={submit} >
                     <BorderWrapper>
                         <p>Email </p>
                         <input type="email" id="email" onChange={emailValue} />

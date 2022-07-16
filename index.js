@@ -1,12 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 const app = express();
 dotenv.config();
 
 const port = process.env.PORT || 5000;
 
+app.use(cors(
+    {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+
+    }
+));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
