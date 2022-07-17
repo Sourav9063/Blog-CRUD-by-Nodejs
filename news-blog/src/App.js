@@ -3,12 +3,14 @@ import React from 'react'
 import './App.css';
 import SignIn from './pages/SignIn/SignIn';
 import { UserProvider } from './UserContext';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
 
     <UserProvider>
       <SignIn />
+      <Home />
     </UserProvider>
 
 
