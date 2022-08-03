@@ -1,13 +1,15 @@
 import { useUser } from "../../UserContext";
 import Axios from 'axios';
-import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
+import { useState } from "react";
+// import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
 
 
-
+// const datas = [];
 
 
 
 const Home = () => {
+    const [datas, setDatas] = useState([]);
 
     const { user, setUser } = useUser();
     console.log(user);
@@ -22,6 +24,7 @@ const Home = () => {
                 // res.data.forEach(element => {
                 //     return <div>element.title</div>
                 // });
+                setDatas(res.data);
 
 
             }
@@ -37,6 +40,11 @@ const Home = () => {
     return (<div>
         <h1>Homeeeeeeeeeeeee</h1>
         <button onClick={fetchData}>fetchData</button>
+        <ul>
+            {datas.map(data => {
+                return <li>{data.title}</li>
+            })}
+        </ul>
     </div>)
 
 

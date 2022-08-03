@@ -6,12 +6,16 @@ import { useUser } from '../../UserContext';
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
 
     const { user, setUser } = useUser();
 
+
+
+
+
+
     // let email = '';
+
 
     const emailValue = (e) => {
         console.log(e.target.value);
@@ -20,11 +24,18 @@ const SignIn = () => {
         console.log(user.email);
     }
 
+
     const passwordValue = (e) => {
         console.log(e.target.value);
         // password = e.target.value;
         setPassword(e.target.value);
     }
+
+
+
+
+
+
 
     const submit = async (e) => {
         e.preventDefault();
@@ -73,7 +84,7 @@ const SignIn = () => {
                     </BorderWrapper>
                     <button type="submit">Sign In</button>
                 </form>
-                <p>Don't have an account? <a href="">Register</a></p>
+                <p>Don't have an account? <a href="/signup">Register</a></p>
             </div>
         </BorderWrapper>
     );
