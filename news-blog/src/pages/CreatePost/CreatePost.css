@@ -1,10 +1,12 @@
 .header_style {
     font-size: large;
+    margin: 10px;
+
 }
 
 .body_style {
     height: 200px;
-    font-size: 14pt;
+    font-size: 14px;
 }
 
 .form {

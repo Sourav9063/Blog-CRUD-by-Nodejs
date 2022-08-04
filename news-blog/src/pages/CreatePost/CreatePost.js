@@ -18,53 +18,56 @@ const CreatePost = () => {
 
 
 
-    async function submit() {
-        console.log("fetching data");
 
-        if (user.access_token != null) {
-            try {
-                const res = await Axios.post('http://localhost:5000/api/v1/blogs', {
-                    headers: {
-                        Authorization: `Bearer ${user.access_token}`, body: datas
-                    }
-                })
-
-                console.log(res.data);
-                console.log(user);
-
-                // res.data.forEach(element => {
-                //     return <div>element.title</div>
-                // });
-                setDatas(res.data);
-
-
-            }
-
-            catch (e) {
-                console.log(e);
-            }
-            console.log('inside');
-
-        }
-        else {
-            console.log('outside');
-            nav("/signin");
-        }
-    }
 
     useEffect(() => {
 
-        submit();
+        console.log("checking user data");
+
+        if (user.access_token == null) {
+            console.log('outside');
+            nav("/signin");
+        }
 
     }
         , []);
 
 
 
+    const submit = async (e) => {
+        e.preventDefault();
+        // console.dir(e);
+        let title = e.target.elements.title.value;
+        let main = e.target.elements.main.value;
+        if (title == '' || main == '') {
+            alert("Please fill all the fields");
+            return;
+        }
+        const data = {
+            title: title,
+            main: main
+        }
+        try {
+            const res = await Axios.post('http://localhost:5000/api/v1/blogs', data, { headers: { Authorization: `Bearer ${user.access_token}`, body: data } });
+            console.log(res.data);
+            // setDatas(res.data);
+            nav("/");
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+
+        console.log(e.target.elements.main.value)
+        console.log(e.target.elements.title.value)
+    }
+
+
+
     return (
         <BorderWrapper>
             <h1>Create Post</h1>
-            <form action="" onSubmit={submit}>
+            <form action="" onSubmit={submit} className="form">
                 <input type="text" className="header_style" id="title" placeholder='Title' />
                 <input type="text" className="body_style" id="main" placeholder='Body' />
                 <button type="submit">Post</button>
