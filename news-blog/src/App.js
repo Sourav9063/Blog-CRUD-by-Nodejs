@@ -5,6 +5,7 @@ import SignIn from './pages/SignIn/SignIn';
 import { UserProvider } from './UserContext';
 import Home from './pages/Home/Home';
 import { Routes, Route } from 'react-router-dom';
+import SignUp from './pages/SignUp/SignUp';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<h1>SignUp</h1>} />
+        <Route path="/signup" element={<SignUp />} />
         <Route />
 
       </Routes >
@@ -27,3 +28,6 @@ function App() {
 }
 
 export default App;
+
+// https://blog.webdevsimplified.com/2022-07/react-router/
+// https://www.youtube.com/watch?v=Ul3y1LXxzdU&t=536s&ab_channel=WebDevSimplified

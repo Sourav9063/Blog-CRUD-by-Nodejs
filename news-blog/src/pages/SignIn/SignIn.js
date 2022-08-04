@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BorderWrapper from '../../components/BorderWrapper/BorderWrapper';
 import Axios from 'axios';
 import { useUser } from '../../UserContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const SignIn = () => {
     const { user, setUser } = useUser();
 
 
-
+    const navigate = useNavigate();
 
 
 
@@ -54,8 +55,11 @@ const SignIn = () => {
                     ...res.data
                 }
             })
+            navigate("/")
+
         } catch (e) {
             console.log(e)
+            alert(e.response.data);
         }
 
 
@@ -84,7 +88,7 @@ const SignIn = () => {
                     </BorderWrapper>
                     <button type="submit">Sign In</button>
                 </form>
-                <p>Don't have an account? <a href="/signup">Register</a></p>
+                <p>Don't have an account? <Link to="/signup">Register</Link></p>
             </div>
         </BorderWrapper>
     );
