@@ -1,0 +1,29 @@
+.flex_right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+
+
+}
+
+.bounding {
+    height: 85vh;
+    overflow-y: scroll;
+    /* margin: auto; */
+    /* padding-top: 20px; */
+}
+
+.home_main {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 20px;
+    padding: 20px;
+    width: 100%;
+
+}
+
+.space_around {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
