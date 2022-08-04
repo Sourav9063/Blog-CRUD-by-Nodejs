@@ -1,14 +1,16 @@
 import { useUser } from "../../UserContext";
 import Axios from 'axios';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // const datas = [];
 
 
 
 const Home = () => {
+
+    const nav = useNavigate();
     const [datas, setDatas] = useState([]);
 
     const { user, setUser } = useUser();
@@ -40,26 +42,49 @@ const Home = () => {
         }
         else {
             console.log('outside');
+            nav("/signin");
         }
     }
-    return (<BorderWrapper>
-        <h1>Homeeeeeeeeeeeee</h1>
-        <button onClick={fetchData}>fetchData</button>
+
+    useEffect(() => {
+
+        fetchData();
+
+    }
+        , []);
 
 
-        {user.access_token == null && <BorderWrapper>
-            <h2><Link to="/signin">Sign In</Link></h2>
-        </BorderWrapper>}
-        <ul>
-            {datas.map(data => {
-                return <BorderWrapper>
-                    <li key={data.blogid} ><h1>{data.title}</h1>
-                        <p>{data.main}</p>
-                    </li>
+
+    return (
+
+        <>
+            <nav >
+                <Link to="/signin">Sign In</Link>
+                <Link to="/signup">Sign Up</Link>
+                <Link to="/createpost">Create Post</Link>
+                <BorderWrapper>
+                    <Link to="/">Home</Link>
                 </BorderWrapper>
-            })}
-        </ul>
-    </BorderWrapper>)
+
+
+            </nav>
+            <BorderWrapper>
+                <h1>Homeeeeeeeeeeeee</h1>
+                <button onClick={fetchData}>fetchData</button>
+                {user.access_token == null && <BorderWrapper>
+                    <h2><Link to="/signin">Sign In</Link></h2>
+                </BorderWrapper>}
+                <ul>
+                    {datas.map(data => {
+                        return <BorderWrapper>
+                            <li key={data.blogid} ><h1>{data.title}</h1>
+                                <p>{data.main}</p>
+                            </li>
+                        </BorderWrapper>
+                    })}
+                </ul>
+            </BorderWrapper>
+        </>)
 
 
 }

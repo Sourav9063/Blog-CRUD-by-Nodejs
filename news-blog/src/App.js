@@ -6,6 +6,7 @@ import { UserProvider } from './UserContext';
 import Home from './pages/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import SignUp from './pages/SignUp/SignUp';
+import CreatePost from './pages/CreatePost/CreatePost';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/createpost" element={<CreatePost />} />
         <Route />
 
       </Routes >

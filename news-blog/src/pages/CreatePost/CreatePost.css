@@ -1,0 +1,15 @@
+.header_style {
+    font-size: large;
+}
+
+.body_style {
+    height: 200px;
+    font-size: 14pt;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
