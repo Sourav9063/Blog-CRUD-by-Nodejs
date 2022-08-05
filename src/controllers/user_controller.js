@@ -26,11 +26,36 @@ exports.getUserByEmail = (req, res) => {
             res.status(500).send(err);
         }
         else {
+            if (user != null) { res.status(200).json(user); }
+            else { res.status(404).send('user not found'); }
+        }
+    })
+}
+
+
+exports.getUserByID = (req, res) => {
+    // const userID = req.params.id;
+    // // get params value from req 
+
+
+    // console.log(userID);
+    User.getUserByID(req.params.id, (err, user) => {
+        if (err) {
+            //send status code 500 if error
+            res.status(500).send(err);
+        }
+        else {
+            console.log(user);
             if (user.length > 0) { res.status(200).json(user); }
             else { res.status(404).send('user not found'); }
         }
     })
 }
+
+
+
+
+
 
 exports.createNewUser = async (req, res) => {
     let user = new User(req.body);

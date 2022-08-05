@@ -45,11 +45,30 @@ User.getUserByEmail = (email, result) => {
             result(err, null)
         }
         else {
+            // delete res[0].password_hash;
             result(null, res)
         }
     }
     )
 }
+
+User.getUserByID = (userID, result) => {
+    db.query(`SELECT * FROM users WHERE id = '${userID}'  LIMIT 1`, (err, res) => {
+        if (err) {
+            console.log("error on query")
+            result(err, null)
+        }
+        else {
+            console.log(res);
+            delete res[0].password_hash;
+            result(null, res)
+        }
+    }
+    )
+}
+
+
+
 User.updateInfo = (userID, newData, result) => {
     db.query('UPDATE users SET ? WHERE id = ?', [newData, userID], (err, res) => {
         if (err) {

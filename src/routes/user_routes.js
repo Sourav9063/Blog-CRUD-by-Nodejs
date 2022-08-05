@@ -6,7 +6,7 @@ const userController = require('../controllers/user_controller');
 
 
 router.get('/', userController.getUserList);
-// router.get('/:id', userController.getUserById);
+router.get('/info/:id', jwt_auth_func.check_token, userController.getUserByID);
 // router.get('/:email', userController.getUserByEmail);
 router.get('/info', jwt_auth_func.check_token, userController.getUserByEmail)
 router.post('/signup', userController.createNewUser);

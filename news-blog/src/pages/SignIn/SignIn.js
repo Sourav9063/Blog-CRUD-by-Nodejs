@@ -22,7 +22,7 @@ const SignIn = () => {
         console.log(e.target.value);
         // email = e.target.value;
         setEmail(e.target.value);
-        console.log(user.email);
+        // console.log(user.email);
     }
 
 
@@ -46,15 +46,20 @@ const SignIn = () => {
             email: email,
             password_hash: password
         }
+        // localStorage.setItem('items', JSON.stringify(data));
         try {
             const res = await Axios.post('http://localhost:5000/api/v1/users/signin', data);
             console.log(res.data);
             setUser(() => {
+
                 return {
                     email: email,
                     ...res.data
                 }
             })
+            console.log('signin user status')
+            console.log(user);
+            localStorage.setItem('user', JSON.stringify(res.data));
             navigate("/")
 
         } catch (e) {

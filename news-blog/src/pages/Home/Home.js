@@ -5,6 +5,8 @@ import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
 import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
 import "../../components/CommonCss.css"
+import Profile from "../../components/Profile/Profile";
+import Post from "../../components/Post/Post";
 
 // const datas = [];
 
@@ -50,7 +52,19 @@ const Home = () => {
 
     useEffect(() => {
 
-        fetchData();
+        try {
+            const data = localStorage.getItem('user');
+            console.log('localStorage');
+            console.dir(data);
+            if (data != null) {
+                setUser(JSON.parse(data));
+            } fetchData();
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+        // fetchData();
 
     }
         , []);
@@ -65,7 +79,9 @@ const Home = () => {
                 <Link className="button_border" to="/createpost">Create Post</Link>
                 <Link className="button_border" to="/signin">Sign In</Link>
                 <Link className="button_border" to="/signup">Sign Up</Link>
-                <Link className="button_border" to="/signout">Sign Out</Link>
+                <Link className="button_border" to="/signIn" onClick={() => {
+                    localStorage.removeItem('user');
+                }}>Sign Out</Link>
 
                 <Link className="button_border" style={{ borderRight: "3px solid black" }} to="/profile">Profile</Link>
 
@@ -82,17 +98,14 @@ const Home = () => {
                     <h2><Link to="/signin">Sign In</Link></h2>
                 </BorderWrapper>} */}
                 <div className="home_main">
-                    <BorderWrapper>
-                        <div></div>
-                    </BorderWrapper>
+                    <Profile >
+
+                    </Profile>
+
                     <div className="bounding">
                         <ul style={{ margin: "auto" }}>
                             {datas.map(data => {
-                                return <BorderWrapper>
-                                    <li key={data.blogid} ><h1>{data.title.toString()}</h1>
-                                        <p>{data.main.toString()}</p>
-                                    </li>
-                                </BorderWrapper>
+                                return <Post data={data} />
                             })}
                         </ul>
                     </div>

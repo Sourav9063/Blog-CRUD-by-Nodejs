@@ -57,6 +57,7 @@ const SignUp = () => {
                 }
             }
             );
+            localStorage.setItem('user', JSON.stringify(user));
 
         } catch (error) {
 
