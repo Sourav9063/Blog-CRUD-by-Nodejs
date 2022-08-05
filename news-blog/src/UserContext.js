@@ -18,6 +18,8 @@ export function UserProvider({ children }) {
     //     localStorage.setItem('user', JSON.stringify(user));
     // }, [user]);
 
+
+
     return (
         <UserContext.Provider value={{ user, setUser }}>
 

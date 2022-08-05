@@ -18,14 +18,14 @@ const Home = () => {
     const [datas, setDatas] = useState([]);
 
     const { user, setUser } = useUser();
-    console.log(user);
+    // console.log(user);
 
-    async function fetchData() {
+    async function fetchData(data) {
         console.log("fetching data");
 
-        if (user.access_token != null) {
+        if (data.access_token != null) {
             try {
-                const res = await Axios.get('http://localhost:5000/api/v1/blogs', { headers: { Authorization: `Bearer ${user.access_token}` } })
+                const res = await Axios.get('http://localhost:5000/api/v1/blogs', { headers: { Authorization: `Bearer ${data.access_token}` } })
 
                 console.log(res.data);
                 console.log(user);
@@ -55,10 +55,12 @@ const Home = () => {
         try {
             const data = localStorage.getItem('user');
             console.log('localStorage');
-            console.dir(data);
+            console.dir(JSON.parse(data));
             if (data != null) {
                 setUser(JSON.parse(data));
-            } fetchData();
+            }
+
+            fetchData(JSON.parse(data));
         }
         catch (e) {
             console.log(e);

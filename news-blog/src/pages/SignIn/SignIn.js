@@ -59,7 +59,10 @@ const SignIn = () => {
             })
             console.log('signin user status')
             console.log(user);
-            localStorage.setItem('user', JSON.stringify(res.data));
+            localStorage.setItem('user', JSON.stringify({
+                email: email,
+                ...res.data
+            }));
             navigate("/")
 
         } catch (e) {

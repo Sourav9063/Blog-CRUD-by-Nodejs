@@ -15,12 +15,12 @@ const Profile = () => {
     useEffect(() => {
         // console.log(user);
 
-        if (user.access_token == null) {
-            console.log('outside');
-            nav("/signin");
+        if (user.access_token != null) {
+            // console.log('outside');
+            // nav("/signin");
+            getInfo();
         }
 
-        getInfo();
     }
         , []);
 
