@@ -76,7 +76,7 @@ const Home = () => {
     return (
 
         <>
-            <nav className="flex_right" >
+            {/* <nav className="flex_right" >
                 <Link className="button_border" to="/">Home</Link>
                 <Link className="button_border" to="/createpost">Create Post</Link>
                 <Link className="button_border" to="/signin">Sign In</Link>
@@ -91,7 +91,7 @@ const Home = () => {
 
 
 
-            </nav>
+            </nav> */}
 
             <BorderWrapper >
                 {/* <h1>Homeeeeeeeeeeeee</h1>
