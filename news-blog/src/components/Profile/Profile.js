@@ -40,6 +40,7 @@ const Profile = () => {
                 }
             }
             )
+            localStorage.setItem('user', JSON.stringify(user));
 
             console.log(user);
         }

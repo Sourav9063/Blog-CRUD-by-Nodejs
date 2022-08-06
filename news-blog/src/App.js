@@ -2,7 +2,7 @@
 import React from 'react'
 import './App.css';
 import SignIn from './pages/SignIn/SignIn';
-import { UserProvider } from './UserContext';
+import { UserProvider, useUser } from './UserContext';
 import Home from './pages/Home/Home';
 import { Routes, Route, Link } from 'react-router-dom';
 import SignUp from './pages/SignUp/SignUp';
@@ -11,7 +11,10 @@ import Profile from './components/Profile/Profile';
 
 
 function App() {
+
   return (
+
+
 
     <UserProvider>
       <nav className="flex_right" >
@@ -19,9 +22,7 @@ function App() {
         <Link className="button_border" to="/createpost">Create Post</Link>
         <Link className="button_border" to="/signin">Sign In</Link>
         <Link className="button_border" to="/signup">Sign Up</Link>
-        <Link className="button_border" to="/signIn" onClick={() => {
-          localStorage.removeItem('user');
-        }}>Sign Out</Link>
+        <Link className="button_border" to="/signIn" >Sign Out</Link>
 
         <Link className="button_border" style={{ borderRight: "3px solid black" }} to="/profile">Profile</Link>
 

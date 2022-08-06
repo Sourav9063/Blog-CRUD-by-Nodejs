@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BorderWrapper from '../../components/BorderWrapper/BorderWrapper';
 import Axios from 'axios';
 import { useUser } from '../../UserContext';
@@ -75,6 +75,19 @@ const SignIn = () => {
 
     };
 
+    // const { user, setUser } = useUusser();
+    useEffect(() => {
+
+
+        setUser(() => {
+            return {
+
+            }
+        }
+        );
+        localStorage.removeItem('user');
+    }
+        , []);
 
 
     return (

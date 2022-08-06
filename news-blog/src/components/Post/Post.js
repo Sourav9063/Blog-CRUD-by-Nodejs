@@ -77,7 +77,10 @@ const Post = (props) => {
                 </div>
 
                 {writer.id === user.id && <div>
-                    <button>Edit Post</button>
+                    <button onClick={() => {
+
+                        nav('createpost ', { state: { id: data.blogid } });
+                    }} >Edit Post</button>
                     <button onClick={deletePost}>Delete Post</button>
                 </div>}
             </div>

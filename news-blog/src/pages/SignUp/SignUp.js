@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
 import { useUser } from "../../UserContext";
 
@@ -13,6 +13,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const nav = useNavigate();
 
 
     const emailValue = (e) => {
@@ -58,6 +59,9 @@ const SignUp = () => {
             }
             );
             localStorage.setItem('user', JSON.stringify(user));
+
+            nav("/");
+
 
         } catch (error) {
 

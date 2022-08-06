@@ -57,7 +57,13 @@ const Home = () => {
             console.log('localStorage');
             console.dir(JSON.parse(data));
             if (data != null) {
-                setUser(JSON.parse(data));
+                console.log('setting user data')
+                setUser(() => {
+                    return {
+                        ...user,
+                        ...JSON.parse(data)
+                    }
+                });
             }
 
             fetchData(JSON.parse(data));
