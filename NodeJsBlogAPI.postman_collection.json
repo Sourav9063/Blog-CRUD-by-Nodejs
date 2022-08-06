@@ -417,6 +417,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhdkBnbWFpbC5jb20iLCJpZCI6MTYsIm5hbWUiOiJzb3VyYXYiLCJpYXQiOjE2NTk3MjgwNTgsImV4cCI6MTY2MjMyMDA1OH0.nxiXEh_s0iZCQkMlI82tHtkiYT6TmtqaIvJjAPED5Rs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/info/16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"info",
+						"16"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
