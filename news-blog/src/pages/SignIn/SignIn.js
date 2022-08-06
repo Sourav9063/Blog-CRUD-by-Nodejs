@@ -92,9 +92,7 @@ const SignIn = () => {
 
     return (
         <BorderWrapper>
-            <div>
-                {user.email && <h1>{user.email}</h1>}
-            </div>
+
 
             <div>
                 <h1>SignIn</h1>

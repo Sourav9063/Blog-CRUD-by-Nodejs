@@ -58,6 +58,8 @@ const SignUp = () => {
                 }
             }
             );
+            console.log('signup user status')
+            console.log(user);
             localStorage.setItem('user', JSON.stringify(user));
 
             nav("/");
@@ -81,9 +83,6 @@ const SignUp = () => {
     return (
 
         <BorderWrapper>
-            <div>
-                {user.email != null && <h1>{user.email}</h1>}
-            </div>
 
             <div>
                 <h1>Sign Up</h1>

@@ -23,7 +23,7 @@ const Home = () => {
     async function fetchData(data) {
         console.log("fetching data");
 
-        if (data.access_token != null) {
+        if (data != null) {
             try {
                 const res = await Axios.get('http://localhost:5000/api/v1/blogs', { headers: { Authorization: `Bearer ${data.access_token}` } })
 
@@ -113,7 +113,7 @@ const Home = () => {
                     <div className="bounding">
                         <ul style={{ margin: "auto" }}>
                             {datas.map(data => {
-                                return <Post data={data} />
+                                return <Post key={data.blogid} data={data} />
                             })}
                         </ul>
                     </div>

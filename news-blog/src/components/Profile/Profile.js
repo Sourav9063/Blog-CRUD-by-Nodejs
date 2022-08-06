@@ -15,11 +15,11 @@ const Profile = () => {
     useEffect(() => {
         // console.log(user);
 
-        if (user.access_token != null) {
-            // console.log('outside');
-            // nav("/signin");
-            getInfo();
-        }
+        // if (user.access_token != null) {
+        // console.log('outside');
+        // nav("/signin");
+        getInfo();
+        // }
 
     }
         , []);
@@ -43,6 +43,7 @@ const Profile = () => {
             localStorage.setItem('user', JSON.stringify(user));
 
             console.log(user);
+            console.log("profile user")
         }
         catch (e) {
             console.dir(e);

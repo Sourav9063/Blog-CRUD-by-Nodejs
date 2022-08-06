@@ -12,7 +12,7 @@ export function useUser() {
 
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
     // useEffect(() => {
     //     localStorage.setItem('user', JSON.stringify(user));

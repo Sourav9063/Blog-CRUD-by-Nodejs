@@ -62,8 +62,8 @@ const Post = (props) => {
 
 
     return (
-        <BorderWrapper>
-            <div key={data.blogid} className="post_main" >
+        <BorderWrapper >
+            <div className="post_main" >
                 <div className="post_head">
                     <h2>{data.title.toString()}</h2>
                     <div>
