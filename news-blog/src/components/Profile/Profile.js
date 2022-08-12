@@ -76,9 +76,13 @@ const Profile = () => {
                     <h2>{user.email}</h2>
                 </div>
                 {/* <p>Joining date {user.join_date.toString().substring(0, 10)}</p> */}
+                <button onClick={
+                    () => {
+                        nav("/profileedit");
+                    }
+                }> Edit Profile</button>
             </div>
 
-            <button> Edit</button>
 
         </BorderWrapper>
     );

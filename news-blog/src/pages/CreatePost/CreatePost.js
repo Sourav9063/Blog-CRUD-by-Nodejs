@@ -81,14 +81,18 @@ const CreatePost = () => {
 
     return (
         <BorderWrapper>
-            <div>
+
+            <div className='create_post'>
                 <h1>{id == null ? "Create Post" : "Edit Post"}</h1>
-                <form action="" onSubmit={submit} className="form">
-                    <input type="text" className="header_style" id="title" placeholder='Title' />
-                    <input type="text" className="body_style" id="main" placeholder='Body' />
-                    <button type="submit">Post</button>
-                </form>
+                <div>
+                    <form action="" onSubmit={submit} className="form">
+                        <input type="text" className="header_style" id="title" placeholder='Title' />
+                        <textarea type="text" className="body_style" id="main" placeholder='Body' />
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
             </div>
+
 
         </BorderWrapper>
     );

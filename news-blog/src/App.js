@@ -8,6 +8,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import SignUp from './pages/SignUp/SignUp';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Profile from './components/Profile/Profile';
+import ProfileEdit from './pages/ProfileEdit/ProfileEdit';
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/createpost" element={<CreatePost />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/profileedit' element={<ProfileEdit />} />
+
 
       </Routes >
     </UserProvider >
