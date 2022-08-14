@@ -67,9 +67,9 @@ const Post = (props) => {
                 <div className="post_head">
                     <h2>{data.title.toString()}</h2>
                     <div>
-                        <p>Created:{data.create_date.toString().substring(0, 10)}</p>
+                        <p>Created : {data.create_date.toString().substring(0, 10)}</p>
 
-                        <p>Writer:{writer.name}</p>
+                        <h4>Writer : {writer.name}</h4>
                     </div>
                 </div>
                 <div className="post_body">

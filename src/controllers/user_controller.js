@@ -193,16 +193,20 @@ exports.signIn = async (req, res) => {
 }
 
 
-exports.updateUser = (req, res) => {
+exports.updateUser = async (req, res) => {
+    if (req.body.password_hash) {
+        req.body.password_hash = await bcrypt.hash(req.body.password_hash, 10);
+    }
     User.updateInfo(req.user.id, req.body, (err, response) => {
         if (err) {
             res.status(500).send(err);
         }
         else {
             // res.json(response);
+
             const newUser = Object.assign(req.user, req.body);
             const token = jwtfunc.auth_token_create(newUser);
-            newUser.authorization = token;
+            newUser.access_token = token;
             res.status(200).json(newUser);
         }
     })

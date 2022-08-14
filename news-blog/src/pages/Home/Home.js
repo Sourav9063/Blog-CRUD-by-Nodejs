@@ -16,6 +16,7 @@ const Home = () => {
 
     const nav = useNavigate();
     const [datas, setDatas] = useState([]);
+    const [blogsCount, setBlogsCount] = useState(0);
 
     const { user, setUser } = useUser();
     // console.log(user);
@@ -27,13 +28,23 @@ const Home = () => {
             try {
                 const res = await Axios.get('http://localhost:5000/api/v1/blogs', { headers: { Authorization: `Bearer ${data.access_token}` } })
 
-                console.log(res.data);
-                console.log(user);
 
-                // res.data.forEach(element => {
-                //     return <div>element.title</div>
-                // });
                 setDatas(res.data);
+
+
+                let count = 0
+                res.data.forEach(element => {
+                    console.dir(element.user_id);
+                    console.log(user.id);
+                    if (element.user_id == data.id) {
+
+                        count++;
+                    }
+                }
+                );
+
+                setBlogsCount(count);
+
 
 
             }
@@ -49,6 +60,36 @@ const Home = () => {
             nav("/signin");
         }
     }
+
+    const getMyBlogs = async () => {
+        console.log("fetching data");
+        if (user != null) {
+            try {
+                const res = await Axios.get('http://localhost:5000/api/v1/blogs/myblogs', { headers: { Authorization: `Bearer ${user.access_token}` } })
+
+
+                // res.data.forEach(element => {
+                //     return <div>element.title</div>
+                // });
+                setDatas(res.data);
+
+
+
+            }
+
+            catch (e) {
+                console.log(e);
+            }
+
+
+        }
+        else {
+            console.log('outside');
+            nav("/signin");
+        }
+    }
+
+
 
     useEffect(() => {
 
@@ -106,16 +147,41 @@ const Home = () => {
                     <h2><Link to="/signin">Sign In</Link></h2>
                 </BorderWrapper>} */}
                 <div className="home_main">
-                    <Profile >
-
-                    </Profile>
+                    <div className="hider">
+                        <Profile blogsCount={blogsCount} >
+                        </Profile>
+                    </div>
 
                     <div className="bounding">
-                        <ul style={{ margin: "auto" }}>
-                            {datas.map(data => {
-                                return <Post key={data.blogid} data={data} />
-                            })}
-                        </ul>
+
+
+
+
+                        <BorderWrapper className='paddingLeft'> <button onClick={getMyBlogs}  >My Blogs</button>
+                            <div className="search">
+                                <h2>Search</h2>
+                                <input type="text" style={{ height: '3.5%', width: '100%' }} placeholder="Search by title, writer" name="search" onChange={(e) => {
+                                    console.dir(e);
+                                    setDatas(datas.filter(data => data.title.includes(e.target.value)));
+                                    if (e.target.value == '') {
+                                        console.log('empty');
+                                        fetchData(user);
+                                    }
+                                }} />
+                            </div>
+
+                        </BorderWrapper>
+
+
+                        {datas.length != 0 ? <div className="paddingLeft">
+                            {
+                                datas.map(data => {
+                                    if (data.title == null) { return <h1>Blog not found</h1> }
+                                    return <Post key={data.blogid} data={data} />
+                                })
+
+                            }
+                        </div> : <h1>No Blogs Found</h1>}
                     </div>
                 </div>
             </BorderWrapper>

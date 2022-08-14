@@ -1,13 +1,15 @@
 import Axios from "axios";
+
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import BorderWrapper from "../BorderWrapper/BorderWrapper";
 import "../CommonCss.css";
+import "./Profile.css";
 
 
 
-const Profile = () => {
+const Profile = (props) => {
 
     const { user, setUser } = useUser();
 
@@ -48,8 +50,14 @@ const Profile = () => {
         catch (e) {
             console.dir(e);
             // alert(e.response.data);
+            nav("/signin");
 
         }
+
+    }
+
+    const getBlogByUserId = async () => {
+        // console.log(user);
 
     }
 
@@ -59,28 +67,38 @@ const Profile = () => {
 
 
 
-
     return (
-        user != null && <BorderWrapper>
+        user != null && <BorderWrapper className='alignItemStart'>
             <div>
-                <div>
-
-                    {/* <Font icon="fas fa-user-circle" /> */}
-
-                    <h1>Profile</h1>
+                <div >
+                    <BorderWrapper className='prof_h1'>
+                        {/* <Font icon="fas fa-user-circle" /> */}
+                        {/* <img src="" alt="" />
+                                 */}
+                        <h1 >Profile</h1>
+                    </BorderWrapper>
                 </div>
-                <div>
-                    <h2>{user.name}</h2>
-                </div>
-                <div>
-                    <h2>{user.email}</h2>
-                </div>
+                <BorderWrapper>
+                    <div className="prof_main">
+                        <img src={process.env.PUBLIC_URL + '/account_icon.png'} alt="logo" style={{ width: "35%", height: '35%' }} />
+                        <div className="prof_main_left">
+                            <h2>{user.name}</h2>
+                            <h3>{user.email}</h3>
+                            <h3>Total blog: {props.blogsCount}</h3>
+                        </div>
+                    </div>
+                </BorderWrapper>
                 {/* <p>Joining date {user.join_date.toString().substring(0, 10)}</p> */}
                 <button onClick={
                     () => {
-                        nav("/profileedit");
+                        nav("/signup", { state: true });
                     }
                 }> Edit Profile</button>
+                <button onClick={
+                    () => {
+                        nav("/signin");
+                    }
+                }>Sign Out</button>
             </div>
 
 

@@ -12,7 +12,7 @@ var Blog = function (blog) {
 }
 
 Blog.getAllBlogs = (result) => {
-    db.query('SELECT * FROM blogs ', (err, res) => {
+    db.query('SELECT blogs.title, blogs.blogid, blogs.user_id, blogs.main, blogs.create_date, users.id,users.name,users.email FROM `blogs` INNER JOIN users ON users.id=blogs.user_id ORDER BY create_date DESC ', (err, res) => {
         if (err) {
             console.log("error on query")
             result(err, null)

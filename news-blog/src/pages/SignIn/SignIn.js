@@ -98,16 +98,16 @@ const SignIn = () => {
                 <h1>SignIn</h1>
                 <form action="" onSubmit={submit} >
                     <BorderWrapper>
-                        <p>Email </p>
+                        <h3>Email </h3>
                         <input type="email" id="email" onChange={emailValue} />
                     </BorderWrapper>
                     <BorderWrapper>
-                        <p >Password </p>
+                        <h3>Password </h3>
                         <input type="password" id="password" onChange={passwordValue} />
                     </BorderWrapper>
                     <button type="submit">Sign In</button>
                 </form>
-                <p>Don't have an account? <Link to="/signup">Register</Link></p>
+                <p>Don't have an account? <Link to="/signup" style={{ color: '#0000ff', fontWeight: 'bold', padding: '5px', textDecoration: 'underLine' }}>Register</Link></p>
             </div>
         </BorderWrapper>
     );

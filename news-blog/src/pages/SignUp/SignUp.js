@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import BorderWrapper from "../../components/BorderWrapper/BorderWrapper";
 import { useUser } from "../../UserContext";
 
@@ -8,7 +8,7 @@ import { useUser } from "../../UserContext";
 
 const SignUp = () => {
 
-
+    const state = useLocation().state;
     const { user, setUser } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -48,7 +48,17 @@ const SignUp = () => {
             name: name,
         }
         try {
-            const res = await Axios.post("http://localhost:5000/api/v1/users/signup", data);
+            let res;
+            if (!state) {
+                res = await Axios.post("http://localhost:5000/api/v1/users/signup", data);
+            }
+            else {
+                if (user.access_token == null) {
+                    nav("/signup");
+                }
+                res = await Axios.patch("http://localhost:5000/api/v1/users/update", data, { headers: { Authorization: `Bearer ${user.access_token}` } });
+
+            }
             console.log(res.data);
             setUser(() => {
                 return {
@@ -58,9 +68,14 @@ const SignUp = () => {
                 }
             }
             );
+            localStorage.setItem('user', JSON.stringify({
+                email: email,
+                name: name,
+                ...res.data
+            }));
             console.log('signup user status')
             console.log(user);
-            localStorage.setItem('user', JSON.stringify(user));
+            // localStorage.setItem('user', JSON.stringify(user));
 
             nav("/");
 
@@ -85,23 +100,23 @@ const SignUp = () => {
         <BorderWrapper>
 
             <div>
-                <h1>Sign Up</h1>
+                {state ? <h1>Edit profile</h1> : <h1>Sign Up</h1>}
                 <form action="" onSubmit={submit} >
                     <BorderWrapper>
-                        <p>Name </p>
+                        <h3>Name </h3>
                         <input type="text" id="name" onChange={nameValue} />
                     </BorderWrapper>
                     <BorderWrapper>
-                        <p>Email </p>
+                        <h3>Email </h3>
                         <input type="email" id="email" onChange={emailValue} />
                     </BorderWrapper>
                     <BorderWrapper>
-                        <p >Password </p>
+                        <h3 >Password </h3>
                         <input type="password" id="password" onChange={passwordValue} />
                     </BorderWrapper>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit"> {state ? 'Update' : 'Sign Up'}</button>
                 </form>
-                <p>Already have an account?<Link to="/signin">Sign In</Link></p>
+                {state || <p>Already have an account?<Link to="/signin" style={{ color: '#0000ff', fontWeight: 'bold', padding: '5px', textDecoration: 'underLine' }}>Sign In</Link></p>}
             </div>
         </BorderWrapper>
     );

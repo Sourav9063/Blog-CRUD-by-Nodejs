@@ -1,0 +1,19 @@
+.prof_main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+
+}
+
+.prof_main_left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.alignItemStart {
+    align-items: flex-start;
+}
