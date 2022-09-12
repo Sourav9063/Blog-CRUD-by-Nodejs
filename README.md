@@ -18,3 +18,5 @@ Then ```npm i``` and ```npm start``` command to start the server.
 
 Then ```cd news-blog``` , ```npm i``` and ```npm start``` command to start react client. 
 http://localhost:3000/ is the client address.
+
+[Check this video](https://drive.google.com/file/d/1qKE_CseIC8Mg9qrg2zpT2GJ0nbqOPCMW/view?usp=sharing)
